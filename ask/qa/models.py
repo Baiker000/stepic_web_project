@@ -7,8 +7,8 @@ class Question(models.Model):
     text =models.TextField()
     added_at = models.DateField()
     rating= models.IntegerField()
-    author = models.ForeignKey(auth.User)
-    likes =models.ManyToManyField(auth.User)
+    author = models.ForeignKey(auth.User, related_name='+')
+    likes =models.ManyToManyField(auth.User, related_name='+')
 #    objects = QuestionManager()
     class Meta:
         get_latest_by="added_at"
@@ -16,8 +16,8 @@ class Question(models.Model):
 class Answer:
     text=models.TextField()
     added_at=models.DateField()
-    question= models.ForeignKey(Question)
-    author=models.ForeignKey(auth.User)
+    question= models.ForeignKey(Question, related_name='+')
+    author=models.ForeignKey(auth.User, related_name='+')
 
 
 class QuestionManager:
