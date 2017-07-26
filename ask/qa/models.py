@@ -3,10 +3,10 @@ import django.contrib.auth.models as auth
 
 # Create your models here.
 class Question(models.Model):
-    title = models.CharField(max_length=255)
-    text =models.TextField()
-    added_at = models.DateField()
-    rating= models.IntegerField()
+    title = models.CharField(max_length=255, null=True)
+    text =models.TextField(null=True)
+    added_at = models.DateField(null=True)
+    rating= models.IntegerField(null=True)
     author = models.ForeignKey(auth.User, related_name='+')
     likes =models.ManyToManyField(auth.User, related_name='+')
 #    objects = QuestionManager()
@@ -14,8 +14,8 @@ class Question(models.Model):
         get_latest_by="added_at"
 
 class Answer:
-    text=models.TextField()
-    added_at=models.DateField()
+    text=models.TextField(null=True)
+    added_at=models.DateField(null=True)
     question= models.ForeignKey(Question, related_name='+')
     author=models.ForeignKey(auth.User, related_name='+')
 
