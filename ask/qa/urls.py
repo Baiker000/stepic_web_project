@@ -1,5 +1,6 @@
-
+from django.conf.urls import url
+from . import views
 
 urlpatterns = [
-    url(r'^', qa.views.test),
+    url(r'^', views.test)
 ]
