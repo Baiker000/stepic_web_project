@@ -3,9 +3,9 @@ sudo ln -s /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/default
 
 sudo /etc/init.d/mysql start
 mysql -uroot -e "create database ask;"
-mysql -uroot -e "CREATE USER 'django@localhost' IDENTIFIED BY 'django';"
-mysql -uroot -e "GRANT ALL PRIVILEGES ON ask.* TO 'django@localhost';"
-mysql -uroot -e "FLUSH PRIVELEGES;"
+mysql -uroot -e "CREATE USER 'django'@'localhost' IDENTIFIED BY 'django';"
+mysql -uroot -e "GRANT ALL ON ask.* TO 'django'@'localhost';"
+mysql -uroot -e "FLUSH PRIVILEGES;"
 python /home/box/web/ask/manage.py makemigrations
 python /home/box/web/ask/manage.py migrate
 python /home/box/web/ask/manage.py check
