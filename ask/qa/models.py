@@ -3,21 +3,21 @@ import django.contrib.auth.models as auth
 
 # Create your models here.
 class Question(models.Model):
-    title = models.CharField(max_length=255, null=True)
-    text =models.TextField(null=True)
+    title = models.CharField(default="",max_length=255)
+    text =models.TextField(default="")
     added_at = models.DateField(null=True)
-    rating= models.IntegerField(null=True)
-    author = models.ForeignKey(auth.User, related_name='+')
+    rating= models.IntegerField(default=0)
+    author = models.ForeignKey(auth.User, null=True, related_name='+')
     likes =models.ManyToManyField(auth.User, related_name='+')
 #    objects = QuestionManager()
     class Meta:
         get_latest_by="added_at"
 
 class Answer:
-    text=models.TextField(null=True)
+    text=models.TextField(default="")
     added_at=models.DateField(null=True)
-    question= models.ForeignKey(Question, related_name='+')
-    author=models.ForeignKey(auth.User, related_name='+')
+    question= models.ForeignKey(Question, null=True, related_name='+')
+    author=models.ForeignKey(auth.User, null=True, related_name='+')
 
 
 class QuestionManager:
