@@ -9,7 +9,7 @@ class Question(models.Model):
     rating= models.IntegerField(default=0)
     author = models.ForeignKey(auth.User, null=True, related_name='+')
     likes =models.ManyToManyField(auth.User, related_name='+')
-#    objects = QuestionManager()
+    objects = QuestionManager()
     class Meta:
         get_latest_by="added_at"
 
@@ -20,7 +20,7 @@ class Answer:
     author=models.ForeignKey(auth.User, null=True, related_name='+')
 
 
-class QuestionManager:
+class QuestionManager(models.Manager):
     def new(self):
         return Question.objects.latest()
     def popular(self):
