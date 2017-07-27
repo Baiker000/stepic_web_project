@@ -1,6 +1,13 @@
 from django.db import models
 import django.contrib.auth.models as auth
 
+
+class QuestionManager(models.Manager):
+    def new(self):
+        return Question.objects.latest()
+    def popular(self):
+        return Question.objects.order_by('rating')
+
 # Create your models here.
 class Question(models.Model):
     title = models.CharField(default="",max_length=255)
@@ -20,8 +27,3 @@ class Answer:
     author=models.ForeignKey(auth.User, null=True, related_name='+')
 
 
-class QuestionManager(models.Manager):
-    def new(self):
-        return Question.objects.latest()
-    def popular(self):
-        return Question.objects.order_by('rating')
