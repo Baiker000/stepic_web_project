@@ -20,7 +20,7 @@ class Question(models.Model):
     class Meta:
         get_latest_by="added_at"
 
-class Answer:
+class Answer(models.Model):
     text=models.TextField(default="")
     added_at=models.DateField(null=True)
     question= models.ForeignKey(Question, null=True, related_name='+')
